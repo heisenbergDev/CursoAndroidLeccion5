@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CursoAndroidLeccion5</string>
+    <string name="download">Descargando</string>
+    <string name="status">Estado: </string>
+    <string name="notstarted">No empezado</string>
+    <string name="url">URL</string>
+    <string name="nombreFicheroDestino">Nombre del fichero destino</string>
+</resources>
