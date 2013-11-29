@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CursoAndroidLeccion5</string>
     <string name="download">Descargando</string>
+    <string name="todownload">Descargar con Servicio Propio</string>
+    <string name="todownloadmanager">Descargar con Download Manager</string>    
     <string name="status">Estado: </string>
     <string name="notstarted">No empezado</string>
     <string name="url">URL</string>

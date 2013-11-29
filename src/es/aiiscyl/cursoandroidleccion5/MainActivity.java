@@ -1,12 +1,18 @@
 package es.aiiscyl.cursoandroidleccion5;
 
+import java.io.File;
+
 import es.aiiscyl.cursoandroidleccion5.service.DownloadService;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +24,8 @@ public class MainActivity extends Activity {
 	private TextView textView;
 	private EditText urlText;
 	private EditText nombreFicheroDestinoText;
+	private DownloadManager dm;
+
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
 
 		@Override
@@ -60,7 +68,7 @@ public class MainActivity extends Activity {
 		unregisterReceiver(receiver);
 	}
 
-	public void onClick(View view) {
+	public void descargarServicioPropio(View view) {
 		String urlDescargar = urlText.getText().toString();
 		String nombreFicheroDestino = nombreFicheroDestinoText.getText().toString();
 		if (!TextUtils.isEmpty(urlDescargar)&&(!TextUtils.isEmpty(nombreFicheroDestino))) {
@@ -72,4 +80,26 @@ public class MainActivity extends Activity {
 			textView.setText("Servicio iniciado");			
 		}
 	}
+
+	public void descargaDownloadManager(View view) {
+		String urlDescargar = urlText.getText().toString();
+		Uri ficheroDestino = getSdCardUri();
+		if (!TextUtils.isEmpty(urlDescargar)&&(ficheroDestino!=null)) {
+			dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+			Request request = new Request(Uri.parse(urlDescargar));	
+			request.setDestinationUri(ficheroDestino);
+			dm.enqueue(request);
+		}
+	}
+	
+	private Uri getSdCardUri() {
+		String nombreFicheroDestino = nombreFicheroDestinoText.getText().toString();
+        String rootUri = Environment.getExternalStorageDirectory().getPath() + "/";
+        Uri uri = null;
+        if (!TextUtils.isEmpty(nombreFicheroDestino)) {
+        	final File file = new File(rootUri,nombreFicheroDestino);
+        	uri = Uri.fromFile(file);
+        }
+        return uri;
+    }	
 }

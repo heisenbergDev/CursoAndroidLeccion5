@@ -40,12 +40,20 @@
     </LinearLayout>    
 
     <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="descargaDownloadManager"
+        android:text="@string/todownloadmanager" /> 
+           
+    <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:onClick="onClick"
-        android:text="@string/download" />
+        android:onClick="descargarServicioPropio"
+        android:text="@string/todownload" />
 
     <LinearLayout
         android:layout_width="wrap_content"
